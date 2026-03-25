@@ -56,10 +56,6 @@ public class OOPSBannerApp {
         System.out.println();
     }
 
-    /**
-     * UC4: Optimized Banner using String Array and Enhanced For-Loop.
-     * This eliminates repetitive println statements.
-     */
     public static void displayUC4() {
         System.out.println("--- UC4: Banner (Array & Loop) ---");
 

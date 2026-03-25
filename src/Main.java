@@ -40,7 +40,7 @@ public class OOPSBannerApp {
                 String.join(d, "  ***** ", "  ***** ", "** ", " ******* ")
         };
 
-        // Enhanced for-loop for clean traversal
+
         for (String line : bannerLines) {
             System.out.println(line);
         }

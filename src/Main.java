@@ -2,9 +2,10 @@
  * OOPSBannerApp
  * * UC1: Basic String Literal Print
  * UC2: Banner Format using String Concatenation (+)
- * UC3: Refactored Banner using String.join() for Memory Efficiency
+ * UC3: Refactored Banner using String.join()
+ * UC4: Modular Banner using String Array and Enhanced For-Loop
  * * @author YourName
- * @version 3.0
+ * @version 4.0
  */
 public class OOPSBannerApp {
 
@@ -12,10 +13,11 @@ public class OOPSBannerApp {
         displayUC1();
         displayUC2();
         displayUC3();
+        displayUC4();
     }
 
     /**
-     * UC1: Simple console output using a String Literal.
+     * UC1: Simple console output.
      */
     public static void displayUC1() {
         System.out.println("--- UC1: Simple Print ---");
@@ -24,7 +26,7 @@ public class OOPSBannerApp {
     }
 
     /**
-     * UC2: Banner format using the + operator (Less efficient).
+     * UC2: Banner format using String Concatenation (+).
      */
     public static void displayUC2() {
         System.out.println("--- UC2: Banner (Concatenation +) ---");
@@ -40,21 +42,30 @@ public class OOPSBannerApp {
 
     /**
      * UC3: Refactored Banner using String.join().
-     * This avoids creating multiple intermediate String objects in the Heap.
      */
     public static void displayUC3() {
-        System.out.println("--- UC3: Banner (Refactored with String.join) ---");
-
-        // Using String.join with an empty delimiter to merge the character segments
-        String delim = "";
-
-        System.out.println(String.join(delim, "  ***** ", "  ***** ", "******** ", "  ****** "));
-        System.out.println(String.join(delim, " ** ** ", " ** ** ", "** **", " ** **"));
-        System.out.println(String.join(delim, "** **", "** **", "** **", "** "));
-        System.out.println(String.join(delim, "** **", "** **", "******** ", " ******* "));
-        System.out.println(String.join(delim, "** **", "** **", "** ", "       **"));
-        System.out.println(String.join(delim, " ** ** ", " ** ** ", "** ", "** **"));
-        System.out.println(String.join(delim, "  ***** ", "  ***** ", "** ", " ******* "));
+        System.out.println("--- UC3: Banner (String.join) ---");
+        String d = "";
+        System.out.println(String.join(d, "  ***** ", "  ***** ", "******** ", " ******* "));
+        System.out.println(String.join(d, " ** **", " ** **", "** **", "** **"));
+        System.out.println(String.join(d, "** **", "** **", "** **", "** "));
+        System.out.println(String.join(d, "** **", "** **", "******** ", " ******* "));
+        System.out.println(String.join(d, "** **", "** **", "** ", "       **"));
+        System.out.println(String.join(d, " ** **", " ** **", "** ", "** **"));
+        System.out.println(String.join(d, "  ***** ", "  ***** ", "** ", " ******* "));
         System.out.println();
     }
-}
+
+    /**
+     * UC4: Optimized Banner using String Array and Enhanced For-Loop.
+     * This eliminates repetitive println statements.
+     */
+    public static void displayUC4() {
+        System.out.println("--- UC4: Banner (Array & Loop) ---");
+
+        // 1. Create a String array to store all seven lines
+        String[] bannerLines = new String[7];
+        String d = ""; // Delimiter
+
+        // 2. Populate the array using String.join()
+        bannerLines[0] = String.join(d, "  *****

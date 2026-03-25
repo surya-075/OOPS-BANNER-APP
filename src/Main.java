@@ -1,63 +1,41 @@
 /**
  * OOPSBannerApp
- * * UC1: Simple Print
- * UC2: Concatenation (+)
- * UC3: String.join()
- * UC4: Array & Loop (Manual population)
- * UC5: Inline Array Initialization (Concise & Readable)
+ * * Evolution of the App:
+ * UC1-UC5: Evolution from literal strings to inline arrays.
+ * UC6: Refactoring logic into static helper methods (DRY Principle).
  * * @author YourName
- * @version 5.0
+ * @version 6.0
  */
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
-        displayUC1();
-        displayUC2();
-        displayUC3();
-        displayUC4();
-        displayUC5();
+        // To keep the console clean, we will call the most advanced version
+        displayUC6();
     }
 
-    // ... (Methods for UC1, UC2, UC3, UC4 remain as defined previously) ...
-
     /**
-     * UC5: Render OOPS as Banner using Inline Array Initialization.
-     * Combines declaration and population into a single, concise statement.
+     * UC6: Render OOPS using Static Helper Methods.
+     * Demonstrates Method Abstraction and the DRY Principle.
      */
-    public static void displayUC5() {
-        System.out.println("--- UC5: Banner (Inline Array Initialization) ---");
+    public static void displayUC6() {
+        System.out.println("--- UC6: Banner (Refactored with Helper Methods) ---");
 
-        String d = ""; // Delimiter for joining segments
-
-        // Combining declaration, initialization, and construction in one step
+        // Inline array initialization by calling helper methods
+        // Notice 'getOPattern()' is called twice - Reusability in action!
         String[] bannerLines = {
-                String.join(d, "  ***** ", "  ***** ", "******** ", " ******* "),
-                String.join(d, " ** ** ", " ** ** ", "** **", " ** **"),
-                String.join(d, "** **", "** **", "** **", "** "),
-                String.join(d, "** **", "** **", "******** ", " ******* "),
-                String.join(d, "** **", "** **", "** ", "       **"),
-                String.join(d, " ** ** ", " ** ** ", "** ", "** **"),
-                String.join(d, "  ***** ", "  ***** ", "** ", " ******* ")
+                String.join("", getOPattern(0), getOPattern(0), getPPattern(0), getSPattern(0)),
+                String.join("", getOPattern(1), getOPattern(1), getPPattern(1), getSPattern(1)),
+                String.join("", getOPattern(2), getOPattern(2), getPPattern(2), getSPattern(2)),
+                String.join("", getOPattern(3), getOPattern(3), getPPattern(3), getSPattern(3)),
+                String.join("", getOPattern(4), getOPattern(4), getPPattern(4), getSPattern(4)),
+                String.join("", getOPattern(5), getOPattern(5), getPPattern(5), getSPattern(5)),
+                String.join("", getOPattern(6), getOPattern(6), getPPattern(6), getSPattern(6))
         };
 
-
+        // Render the banner
         for (String line : bannerLines) {
             System.out.println(line);
         }
-        System.out.println();
     }
 
-    // UC1 - UC4 methods included below for completeness of the combined code logic
-    public static void displayUC1() {
-        System.out.println("--- UC1: Simple Print ---\nOOPS\n");
-    }
-
-    public static void displayUC2() {
-        System.out.println("--- UC2: Banner (Concatenation +) ---");
-        System.out.println("  ***** " + " " + "  ***** " + " " + "******** " + " " + " ******* ");
-        System.out.println(" ** ** " + " " + " ** ** " + " " + "** **" + " " + "** **");
-        System.out.println("** **" + " " + "** **" + " " + "** **" + " " + "** ");
-        System.out.println("** **" + " " + "** **" + " " + "******** " + " " + " ******* ");
-        System.out.println("** **" + " " + "** **" + " " + "** " + " " + "       **");
-        System.out.println(" ** ** " + " " + " ** ** " + " " + "** " + " " + "** **");
-        System
+// --- Helper Methods (Static Utility Functions

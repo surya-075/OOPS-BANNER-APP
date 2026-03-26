@@ -1,71 +1,74 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * OOPSBannerApp
- * * Evolution:
- * UC1-UC6: Evolution from simple literals to modular static methods.
- * UC7: Full OOP approach using Encapsulation, Static Inner Classes, and StringBuilder.
+ * OOPSBannerApp - Final Version
+ * * Evolution Summary:
+ * UC1: Simple Print -> UC2-UC5: Array/Loop Refactoring ->
+ * UC6-UC7: OOP & Encapsulation -> UC8: Collections (HashMap) & Scalability.
  * * @author YourName
- * @version 7.0
+ * @version 8.0
  */
 public class OOPSBannerApp {
 
-    // --- PART 1 & 2: Inner Static Class for Encapsulation ---
+    // --- PART 1: Main Class & Data Structure ---
 
-    /**
-     * Inner static class to map a character to its banner pattern.
-     * This demonstrates Encapsulation and Single Responsibility.
-     */
-    public static class CharacterPatternMap {
-        private final char character;
-        private final String[] pattern;
+    // Using a Map to store Character patterns for efficient retrieval
+    private static final Map<Character, String[]> characterMap = new HashMap<>();
 
-        /**
-         * Constructor to initialize character and pattern.
-         * @param character The char literal
-         * @param pattern Array of 7 strings representing the banner rows
-         */
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        /** @return the character */
-        public char getCharacter() { return character; }
-
-        /**
-         * @param row The row index (0-6)
-         * @return The pattern string for that row
-         */
-        public String getRowPattern(int row) {
-            return pattern[row];
-        }
-    }
-
-    // --- PART 3: Outer Class Utility Methods ---
-
-    /**
-     * UC7 Logic: Displays the banner using an array of CharacterPatternMap objects.
-     * Uses StringBuilder for memory efficiency during concatenation.
-     */
-    public static void displayUC7Banner() {
-        System.out.println("--- UC7: Object-Oriented Banner (Inner Class & StringBuilder) ---");
-
-        // Initialize Objects (State and Behavior encapsulated)
-        CharacterPatternMap charO = new CharacterPatternMap('O', new String[]{
+    static {
+        // Initialize the Map with ASCII patterns (7-line format, 9-char width)
+        characterMap.put('O', new String[]{
                 "  ***** ", " ** ** ", "** **", "** **", "** **", " ** ** ", "  ***** "
         });
-
-        CharacterPatternMap charP = new CharacterPatternMap('P', new String[]{
+        characterMap.put('P', new String[]{
                 "******** ", "** ** ", "** ** ", "******** ", "** ", "** ", "** "
         });
-
-        CharacterPatternMap charS = new CharacterPatternMap('S', new String[]{
+        characterMap.put('S', new String[]{
                 " ******* ", "** **", "** ", " ******* ", "       **", "** **", " ******* "
         });
+    }
 
-        // Array of objects representing the word "OOPS"
-        CharacterPatternMap[] bannerArray = { charO, charO, charP, charS };
+    // --- PART 2: Utility Static Methods ---
 
-        // Render line by line
+    /**
+     * Renders any given string as a banner by looking up patterns in the Map.
+     * Demonstrates Modularity and the use of StringBuilder.
+     * @param message The string to be printed as a banner (e.g., "OOPS")
+     */
+    public static void displayBanner(String message) {
+        System.out.println("--- UC8: Final Banner (HashMap & Collection Framework) ---");
+
+        // Loop through each of the 7 rows of the banner
         for (int row = 0; row < 7; row++) {
             StringBuilder lineBuilder = new StringBuilder();
-            for (CharacterPatternMap cp : bannerArray) {
+
+            // Nested loop: Iterate through each character in the input message
+            for (char c : message.toUpperCase().toCharArray()) {
+                String[] pattern = characterMap.get(c);
+
+                if (pattern != null) {
+                    lineBuilder.append(pattern[row]).append("  "); // Add spacing between letters
+                }
+            }
+            System.out.println(lineBuilder.toString());
+        }
+        System.out.println();
+    }
+
+    // --- PART 3: Main Method ---
+
+    public static void main(String[] args) {
+        // Demonstrate the journey from UC1
+        displayUC1();
+
+        // Demonstrate the final modular UC8 solution
+        // This can now print "OOPS", "SPOOP", "SOOP", or "POOP" easily!
+        displayBanner("OOPS");
+    }
+
+    /** UC1: Original simple use case */
+    public static void displayUC1() {
+        System.out.println("--- UC1: Simple Print ---\nOOPS\n");
+    }
+}

@@ -1,41 +1,71 @@
 /**
  * OOPSBannerApp
- * * Evolution of the App:
- * UC1-UC5: Evolution from literal strings to inline arrays.
- * UC6: Refactoring logic into static helper methods (DRY Principle).
+ * * Evolution:
+ * UC1-UC6: Evolution from simple literals to modular static methods.
+ * UC7: Full OOP approach using Encapsulation, Static Inner Classes, and StringBuilder.
  * * @author YourName
- * @version 6.0
+ * @version 7.0
  */
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
-        // To keep the console clean, we will call the most advanced version
-        displayUC6();
-    }
+    // --- PART 1 & 2: Inner Static Class for Encapsulation ---
 
     /**
-     * UC6: Render OOPS using Static Helper Methods.
-     * Demonstrates Method Abstraction and the DRY Principle.
+     * Inner static class to map a character to its banner pattern.
+     * This demonstrates Encapsulation and Single Responsibility.
      */
-    public static void displayUC6() {
-        System.out.println("--- UC6: Banner (Refactored with Helper Methods) ---");
+    public static class CharacterPatternMap {
+        private final char character;
+        private final String[] pattern;
 
-        // Inline array initialization by calling helper methods
-        // Notice 'getOPattern()' is called twice - Reusability in action!
-        String[] bannerLines = {
-                String.join("", getOPattern(0), getOPattern(0), getPPattern(0), getSPattern(0)),
-                String.join("", getOPattern(1), getOPattern(1), getPPattern(1), getSPattern(1)),
-                String.join("", getOPattern(2), getOPattern(2), getPPattern(2), getSPattern(2)),
-                String.join("", getOPattern(3), getOPattern(3), getPPattern(3), getSPattern(3)),
-                String.join("", getOPattern(4), getOPattern(4), getPPattern(4), getSPattern(4)),
-                String.join("", getOPattern(5), getOPattern(5), getPPattern(5), getSPattern(5)),
-                String.join("", getOPattern(6), getOPattern(6), getPPattern(6), getSPattern(6))
-        };
+        /**
+         * Constructor to initialize character and pattern.
+         * @param character The char literal
+         * @param pattern Array of 7 strings representing the banner rows
+         */
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-        // Render the banner
-        for (String line : bannerLines) {
-            System.out.println(line);
+        /** @return the character */
+        public char getCharacter() { return character; }
+
+        /**
+         * @param row The row index (0-6)
+         * @return The pattern string for that row
+         */
+        public String getRowPattern(int row) {
+            return pattern[row];
         }
     }
 
-// --- Helper Methods (Static Utility Functions
+    // --- PART 3: Outer Class Utility Methods ---
+
+    /**
+     * UC7 Logic: Displays the banner using an array of CharacterPatternMap objects.
+     * Uses StringBuilder for memory efficiency during concatenation.
+     */
+    public static void displayUC7Banner() {
+        System.out.println("--- UC7: Object-Oriented Banner (Inner Class & StringBuilder) ---");
+
+        // Initialize Objects (State and Behavior encapsulated)
+        CharacterPatternMap charO = new CharacterPatternMap('O', new String[]{
+                "  ***** ", " ** ** ", "** **", "** **", "** **", " ** ** ", "  ***** "
+        });
+
+        CharacterPatternMap charP = new CharacterPatternMap('P', new String[]{
+                "******** ", "** ** ", "** ** ", "******** ", "** ", "** ", "** "
+        });
+
+        CharacterPatternMap charS = new CharacterPatternMap('S', new String[]{
+                " ******* ", "** **", "** ", " ******* ", "       **", "** **", " ******* "
+        });
+
+        // Array of objects representing the word "OOPS"
+        CharacterPatternMap[] bannerArray = { charO, charO, charP, charS };
+
+        // Render line by line
+        for (int row = 0; row < 7; row++) {
+            StringBuilder lineBuilder = new StringBuilder();
+            for (CharacterPatternMap cp : bannerArray) {
